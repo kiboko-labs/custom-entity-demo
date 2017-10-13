@@ -1,0 +1,93 @@
+{% extends 'PimCustomEntityBundle:CustomEntity:form.html.twig' %}
+
+{% form_theme form.labelFallback 'KibokoEnrichBundle:CustomReferenceData:form/label.html.twig' %}
+{% form_theme form.descriptionFallback 'KibokoEnrichBundle:CustomReferenceData:form/description.html.twig' %}
+{% form_theme form.pictureFallback 'KibokoEnrichBundle:CustomReferenceData:form/picture.html.twig' %}
+
+{% form_theme form.label 'KibokoEnrichBundle:CustomReferenceData:form/pim_translatable_field_row.html.twig' %}
+{% form_theme form.description 'KibokoEnrichBundle:CustomReferenceData:form/pim_translatable_field_row.html.twig' %}
+{% form_theme form.picture with [
+'KibokoEnrichBundle:CustomReferenceData:form/pim_translatable_field_row.html.twig',
+'KibokoEnrichBundle:CustomReferenceData:form/picture.html.twig'
+]
+%}
+
+{% block custom_entity_form_tabs %}
+    <div class="AknTabContainer">
+        {{ elements.form_navbar(['properties']) }}
+
+        <div class="AknTabContainer-content tab-content">
+
+            {{ elements.form_errors(form) }}
+
+            <div class="tab-pane active" id="properties">
+                {% block custom_entity_form_properties %}
+                    <div class="tabsections">
+                        <div class="tabsection">
+                            <div class="tabsection-title">{{ 'pane.accordion.general_properties' | trans }}</div>
+                            <div class="tabsection-content">
+                                <div class="AknFormContainer AknFormContainer--withPadding">
+                                    {{ form_row(form.code) }}
+                                    {{ form_row(form.labelFallback) }}
+                                    {{ form_row(form.label, {'attr': {'class': 'labelBlock'}}) }}
+                                    {{ form_row(form.descriptionFallback) }}
+                                    {{ form_row(form.description, {'attr': {'class': 'descriptionBlock'}}) }}
+                                    {{ form_row(form.pictureFallback) }}
+                                    {{ form_row(form.picture, {'attr': {'class': 'pictureBlock', 'displayFolder': false}}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <style>
+        .labelBlock, .descriptionBlock, .pictureBlock.AknFieldContainer {
+            display: none;
+            width: 500px;
+            margin-left: 400px;
+            background-color: white;
+            border: 1px solid rgb(238, 238, 238);
+            padding: 10px;
+        }
+        .labelBlock:after, .descriptionBlock:after, .pictureBlock.AknFieldContainer:after {
+            clear: both;
+        }
+    </style>
+    <script type="text/javascript">
+        require(['jquery'], function($) {
+            var labelFolder = $('#labelFallbackFolder');
+            var descriptionFolder = $('#descriptionFallbackFolder');
+            var pictureFolder = $('#pictureFallbackFolder');
+
+            labelFolder.click(function() {
+                if(labelFolder.hasClass('icon-folder-close')) {
+                    labelFolder.removeClass('icon-folder-close').addClass('icon-folder-open');
+                }else {
+                    labelFolder.removeClass('icon-folder-open').addClass('icon-folder-close');
+                }
+
+                $('.labelBlock').toggle();
+            });
+
+            descriptionFolder.click(function() {
+                if(descriptionFolder.hasClass('icon-folder-close')) {
+                    descriptionFolder.removeClass('icon-folder-close').addClass('icon-folder-open');
+                }else {
+                    descriptionFolder.removeClass('icon-folder-open').addClass('icon-folder-close');
+                }
+                $('.descriptionBlock').toggle();
+            });
+
+            pictureFolder.click(function() {
+                if(pictureFolder.hasClass('icon-folder-close')) {
+                    pictureFolder.removeClass('icon-folder-close').addClass('icon-folder-open');
+                }else {
+                    pictureFolder.removeClass('icon-folder-open').addClass('icon-folder-close');
+                }
+                $('.pictureBlock.AknFieldContainer').toggle();
+            });
+        });
+    </script>
+{% endblock %}

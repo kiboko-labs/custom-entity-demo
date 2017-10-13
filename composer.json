@@ -21,7 +21,8 @@
     "require": {
         "akeneo/pim-community-dev": "1.7.*",
         "symfony/intl": "3.1.2",
-        "akeneo-labs/custom-entity-bundle": "1.10.*"
+        "akeneo-labs/custom-entity-bundle": "1.10.*",
+        "kiboko/akeneo-enrich-bundle": "*"
     },
     "require-dev": {
         "doctrine/migrations": "1.2.2",
@@ -31,6 +32,11 @@
         {
             "type": "vcs",
             "url": "https://github.com/akeneo/pim-community-dev.git",
+            "branch": "master"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/kiboko-labs/akeneo-enrich-bundle.git",
             "branch": "master"
         }
     ],

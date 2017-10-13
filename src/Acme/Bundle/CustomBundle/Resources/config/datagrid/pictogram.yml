@@ -1,6 +1,6 @@
 datagrid:
     pictogram:
-        extends: translatable-entity-grid
+        extends: pictogram-entity-grid
         options:
             entityHint: pictogram
             locale_parameter: localeCode
@@ -12,8 +12,17 @@ datagrid:
         columns:
             code:
                 label: Code
-            label:
+            labelFallback:
                 label: Label
+            localizedLabel:
+                label: Localized Label
+                data_name: translation.label
+            pictureFallback:
+                label: Picture
+                type: twig
+                template: 'KibokoEnrichBundle:Datagrid:pictureColumn.html.twig'
+                data_name: pictureFallback
+                frontend_type: html
             created:
                 label: Created
                 type: product_value_datetime
@@ -59,10 +68,10 @@ datagrid:
                     type:      string
                     label:     Code
                     data_name: rd.code
-                label:
+                labelFallback:
                     type:      string
                     label:     Label
-                    data_name: translation.label
+                    data_name: rd.labelFallback
                 created:
                     type:             date
                     label:            Created
@@ -77,8 +86,8 @@ datagrid:
             columns:
                 code:
                     data_name: rd.code
-                label:
-                    data_name: translation.label
+                labelFallback:
+                    data_name: rd.labelFallback
                 created:
                     data_name: rd.created
                 updated:

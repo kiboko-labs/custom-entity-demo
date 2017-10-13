@@ -18,6 +18,13 @@ Acme\Bundle\CustomBundle\Entity\Pictogram:
             gedmo:
                 timestampable:
                     on: create
+        labelFallback:
+            type: string
+            length: 100
+            nullable: true
+        descriptionFallback:
+            type: text
+            nullable: true
         updated:
             type: datetime
             gedmo:
@@ -30,3 +37,12 @@ Acme\Bundle\CustomBundle\Entity\Pictogram:
             cascade:
                 - persist
                 - detach
+    oneToOne:
+        pictureFallback:
+            targetEntity: Akeneo\Component\FileStorage\Model\FileInfo
+            joinColumn:
+                name: picture_id
+                referencedColumnName: id
+                onDelete: CASCADE
+            cascade:
+                - persist

@@ -17,6 +17,9 @@ Acme\Bundle\CustomBundle\Entity\PictogramTranslation:
             type: string
             length: 100
             nullable: true
+        description:
+            type: text
+            nullable: true
         locale:
             type: string
             length: 20
@@ -28,3 +31,11 @@ Acme\Bundle\CustomBundle\Entity\PictogramTranslation:
                 foreign_key:
                     referencedColumnName: id
                     onDelete: CASCADE
+    oneToOne:
+        picture:
+            targetEntity: Akeneo\Component\FileStorage\Model\FileInfo
+            joinColumn:
+                name: picture_id
+                referencedColumnName: id
+                onDelete: CASCADE
+            cascade: [ persist ]

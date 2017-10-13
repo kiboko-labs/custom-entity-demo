@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             // your app bundles should be registered here
             new Pim\Bundle\CustomEntityBundle\PimCustomEntityBundle(),
             new Acme\Bundle\CustomBundle\AcmeCustomBundle(),
+            new \Kiboko\Bundle\EnrichBundle\KibokoEnrichBundle(),
         ];
     }
 

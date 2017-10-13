@@ -1,3 +1,6 @@
+parameters:
+  my_pictogram.form.type.pictogram.class: Acme\Bundle\CustomBundle\Form\Type\PictogramType
+
 services:
     pim_custom.form.type.color:
         class: Acme\Bundle\CustomBundle\Form\Type\ColorType
@@ -20,6 +23,7 @@ services:
             - { name: form.type, alias: acme_enrich_brand_mass_edit }
 
     pim_custom.form.type.pictogram:
-        class: Acme\Bundle\CustomBundle\Form\Type\PictogramType
+        class: '%my_pictogram.form.type.pictogram.class%'
+        arguments: ['@kiboko_enrich.form.event_subscriber']
         tags:
             - { name: form.type, alias: acme_enrich_pictogram }

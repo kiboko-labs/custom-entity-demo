@@ -47,7 +47,11 @@ custom_entities:
                 form_type: acme_enrich_pictogram
                 form_options:
                     translation_class: Acme\Bundle\CustomBundle\Entity\PictogramTranslation
+                service: pim_custom_entity.action.create
+                template: AcmeCustomBundle:Pictogram:form.html.twig
             edit:
                 form_type: acme_enrich_pictogram
                 form_options:
                     translation_class: Acme\Bundle\CustomBundle\Entity\PictogramTranslation
+                service: pim_custom_entity.action.edit
+                template: AcmeCustomBundle:Pictogram:form.html.twig
